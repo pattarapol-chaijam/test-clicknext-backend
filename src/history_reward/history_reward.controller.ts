@@ -1,4 +1,12 @@
-import { Controller, Get, Post, Body, Patch, Param, Delete } from '@nestjs/common';
+import {
+  Controller,
+  Get,
+  Post,
+  Body,
+  Patch,
+  Param,
+  Delete,
+} from '@nestjs/common';
 import { HistoryRewardService } from './history_reward.service';
 import { CreateHistoryRewardDto } from './dto/create-history_reward.dto';
 import { UpdateHistoryRewardDto } from './dto/update-history_reward.dto';
@@ -23,7 +31,10 @@ export class HistoryRewardController {
   }
 
   @Patch(':id')
-  update(@Param('id') id: string, @Body() updateHistoryRewardDto: UpdateHistoryRewardDto) {
+  update(
+    @Param('id') id: string,
+    @Body() updateHistoryRewardDto: UpdateHistoryRewardDto,
+  ) {
     return this.historyRewardService.update(+id, updateHistoryRewardDto);
   }
 

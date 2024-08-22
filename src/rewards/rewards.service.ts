@@ -1,26 +1,39 @@
 import { Injectable } from '@nestjs/common';
 import { CreateRewardDto } from './dto/create-reward.dto';
 import { UpdateRewardDto } from './dto/update-reward.dto';
+import { InjectRepository } from '@nestjs/typeorm';
+import { Reward } from './entities/reward.entity';
+import { Repository } from 'typeorm';
 
 @Injectable()
 export class RewardsService {
+  constructor(
+    @InjectRepository(Reward)
+    private rewardRepository: Repository<Reward>,
+  ) {}
   create(createRewardDto: CreateRewardDto) {
-    return 'This action adds a new reward';
+    return this.rewardRepository.save(createRewardDto);
   }
 
   findAll() {
-    return `This action returns all rewards`;
+    return this.rewardRepository.find();
   }
 
-  findOne(id: number) {
-    return `This action returns a #${id} reward`;
+  findOne(rewardId: number) {
+    return this.rewardRepository.findOne({ where: { rewardId } });
   }
 
-  update(id: number, updateRewardDto: UpdateRewardDto) {
-    return `This action updates a #${id} reward`;
+  async update(rewardId: number, updateRewardDto: UpdateRewardDto) {
+    const reward = await this.rewardRepository.findOneBy({ rewardId });
+    if (!reward) {
+      throw new Error(`Reward with id ${rewardId} not found`);
+    }
+    const updatedRewad = { ...reward, ...updateRewardDto };
+
+    return this.rewardRepository.save(updatedRewad);
   }
 
-  remove(id: number) {
-    return `This action removes a #${id} reward`;
+  remove(rewardId: number) {
+    return `This action removes a #${rewardId} reward`;
   }
 }
