@@ -8,6 +8,6 @@ export class AuthController {
   @HttpCode(HttpStatus.OK)
   @Post('signIn')
   signIn(@Body() signInDto: Record<string, any>) {
-    return this.authService.signIn(signInDto.user, signInDto.password);
+    return this.authService.signIn(signInDto.username, signInDto.password);
   }
 }
