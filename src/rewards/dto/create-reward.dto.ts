@@ -14,5 +14,5 @@ export class CreateRewardDto {
   rewardImg: string;
 
   @IsNotEmpty()
-  reward_amount: number;
+  rewardAmount: number;
 }

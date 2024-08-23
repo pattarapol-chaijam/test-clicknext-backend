@@ -32,7 +32,7 @@ export class Reward {
   rewardImg: string;
 
   @Column()
-  reward_amount: number;
+  rewardAmount: number;
 
   @OneToMany(() => HistoryReward, (historyReward) => historyReward.rewards)
   historyRewards: HistoryReward[];

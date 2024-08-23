@@ -3,7 +3,6 @@ import { User } from 'src/users/entities/user.entity';
 import {
   Entity,
   PrimaryGeneratedColumn,
-  Column,
   CreateDateColumn,
   ManyToOne,
 } from 'typeorm';
@@ -12,10 +11,7 @@ import {
 export class HistoryReward {
   @PrimaryGeneratedColumn()
   historyRewardId: number;
-  @Column()
-  userId: number;
-  @Column()
-  rewardId: number;
+
   @CreateDateColumn()
   historyRewardDate: Date;
 
