@@ -9,6 +9,7 @@ import { DataSource } from 'typeorm';
 import { UsersModule } from './users/users.module';
 import { RewardsModule } from './rewards/rewards.module';
 import { HistoryRewardModule } from './history_reward/history_reward.module';
+import { AuthModule } from './auth/auth.module';
 
 @Module({
   imports: [
@@ -21,6 +22,7 @@ import { HistoryRewardModule } from './history_reward/history_reward.module';
       entities: [User, Reward, HistoryReward],
       synchronize: true,
     }),
+    AuthModule,
   ],
   controllers: [AppController],
   providers: [AppService],
