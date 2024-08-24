@@ -1,3 +1,4 @@
 export class CreateHistoryRewardDto {
-  historyRewardDate: Date;
+  usersId: number;
+  rewardsId: number;
 }

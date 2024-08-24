@@ -28,13 +28,13 @@ export class UsersService {
   }
 
   async update(userId: number, updateUserDto: UpdateUserDto) {
-    const user = await this.userRepository.findOneBy({ userId });
+    const user = await this.userRepository.findOne({ where: { userId } });
     if (!user) {
       throw new Error(`User with id ${userId} not found`);
     }
-    const updatedRewad = { ...user, ...updateUserDto };
-
-    return this.userRepository.save(updatedRewad);
+    user.userPoint = updateUserDto.userPoint;
+    await this.userRepository.save(user);
+    return user;
   }
 
   remove(userId: number) {
