@@ -25,7 +25,7 @@ export class HistoryRewardController {
     return this.historyRewardService.findAll();
   }
 
-  @Get(':id')
+  @Get(':userId')
   findById(@Param('userId') userId: number) {
     return this.historyRewardService.findById(userId);
   }

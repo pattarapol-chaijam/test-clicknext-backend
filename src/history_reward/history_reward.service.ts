@@ -35,8 +35,8 @@ export class HistoryRewardService {
     return this.historyRewardRepository.find();
   }
 
-  findById(userId: number) {
-    const historyReward = this.historyRewardRepository.find({
+  async findById(userId: number) {
+    const historyReward = await this.historyRewardRepository.find({
       where: { usersId: userId },
       relations: {
         users: true,
@@ -46,6 +46,8 @@ export class HistoryRewardService {
     if (!historyReward) {
       throw new NotFoundException('User reward not found');
     }
+    console.log(userId);
+    console.log(historyReward);
     return historyReward;
   }
 
